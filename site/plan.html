@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>План реализации | Growbox Journal</title>
+    <meta
+      name="description"
+      content="Краткая веб-версия плана реализации умной теплицы и гроубокса для томатов."
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="doc-page">
+    <header class="site-header">
+      <nav class="nav" aria-label="Основная навигация">
+        <a class="logo" href="index.html" aria-label="Growbox Journal">
+          <span>GB</span>
+          <span>Growbox Journal</span>
+        </a>
+        <div class="nav-links">
+          <a href="index.html">Главная</a>
+          <a href="equipment.html">Оборудование</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="doc-hero section-shell">
+        <p class="kicker">Smart greenhouse plan</p>
+        <h1>План реализации умной теплицы</h1>
+        <p class="lead">
+          Цель проекта — постепенно перейти от мониторинга влажности почвы на
+          ESP32 к полноценному гроубоксу с историей измерений, уведомлениями,
+          автополивом, управлением светом и вентиляцией.
+        </p>
+      </section>
+
+      <section class="doc-content section-shell">
+        <aside class="doc-aside">
+          <span>Архитектура</span>
+          <p>Датчики -> ESP32 -> Wi-Fi -> Ktor API -> База данных -> Панель.</p>
+        </aside>
+
+        <div class="doc-body">
+          <article>
+            <h2>MVP</h2>
+            <p>
+              Первый релиз должен быть надежным: ESP32 DevKit, 1-2 емкостных
+              датчика влажности, отправка телеметрии на сервер и хранение
+              измерений.
+            </p>
+            <ul>
+              <li><code>POST /api/v1/telemetry</code> принимает показания.</li>
+              <li>Сервер хранит <code>devices</code>, <code>sensors</code>, <code>measurements</code>.</li>
+              <li>Датчики имеют калибровку сухого и влажного значения.</li>
+              <li>ESP32 переживает временную недоступность Wi-Fi и сервера.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h2>Этапы</h2>
+            <div class="doc-stage-list">
+              <div><span>00</span><p>Проектирование: размер бокса, растения, сервер, питание.</p></div>
+              <div><span>01</span><p>ESP32, влажность почвы и первая отправка JSON.</p></div>
+              <div><span>02</span><p>Калибровка датчиков и базовый мониторинг.</p></div>
+              <div><span>03</span><p>Мини-гроубокс без силового управления от ESP32.</p></div>
+              <div><span>04</span><p>Температура, влажность воздуха, свет, вода и протечка.</p></div>
+              <div><span>05</span><p>Уведомления и правила предупреждений.</p></div>
+              <div><span>06</span><p>Автополив только после накопления истории.</p></div>
+              <div><span>07</span><p>Управление светом и вентиляцией с учетом безопасности 220V.</p></div>
+            </div>
+          </article>
+
+          <article>
+            <h2>Ktor backend</h2>
+            <p>
+              Основной стек: Kotlin + Ktor, PostgreSQL, Flyway,
+              <code>kotlinx.serialization</code>, авторизация устройств через
+              заголовок <code>X-Device-Token</code>.
+            </p>
+            <div class="endpoint-list">
+              <p><code>GET /api/v1/health</code> healthcheck</p>
+              <p><code>GET /api/v1/devices</code> список устройств</p>
+              <p><code>GET /api/v1/devices/{id}/latest</code> последние показания</p>
+              <p><code>GET /api/v1/devices/{id}/readings</code> история</p>
+              <p><code>POST /api/v1/sensors/{id}/calibration</code> калибровка</p>
+            </div>
+          </article>
+
+          <article>
+            <h2>ESP32</h2>
+            <p>
+              Прошивка хранит идентификатор устройства и локальные секреты,
+              читает analog-значения, усредняет 5-10 замеров, применяет
+              калибровку, отправляет JSON и пишет диагностику в Serial.
+            </p>
+          </article>
+
+          <article>
+            <h2>Ограничения безопасности</h2>
+            <ul>
+              <li>Не использовать резистивные датчики влажности для постоянной работы.</li>
+              <li>Не подключать 220V напрямую к ESP32.</li>
+              <li>Автополив включать только после истории измерений и понимания порогов.</li>
+              <li>Для автополива обязательны лимит времени помпы, ручной режим и датчик протечки.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer section-shell">
+      <span>Growbox Journal</span>
+      <a href="index.html">Вернуться на главную</a>
+    </footer>
+  </body>
+</html>

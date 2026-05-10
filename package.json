@@ -1,0 +1,14 @@
+{
+  "name": "growbox-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Статическая страница прогресса проекта домашнего гроубокса.",
+  "scripts": {
+    "serve": "python3 -m http.server 8000 -d site",
+    "test:ui": "playwright test",
+    "test:ui:update": "playwright test --update-snapshots"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.0"
+  }
+}

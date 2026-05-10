@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Оборудование | Growbox Journal</title>
+    <meta
+      name="description"
+      content="Краткая веб-версия списка оборудования для умной теплицы и гроубокса."
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="doc-page">
+    <header class="site-header">
+      <nav class="nav" aria-label="Основная навигация">
+        <a class="logo" href="index.html" aria-label="Growbox Journal">
+          <span>GB</span>
+          <span>Growbox Journal</span>
+        </a>
+        <div class="nav-links">
+          <a href="index.html">Главная</a>
+          <a href="plan.html">План</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="doc-hero section-shell">
+        <p class="kicker">Equipment shopping list</p>
+        <h1>Список оборудования по этапам</h1>
+        <p class="lead">
+          Покупки лучше делать постепенно: сначала мониторинг, потом климат,
+          затем полив и только после этого управление светом и вентиляцией.
+        </p>
+      </section>
+
+      <section class="doc-content section-shell">
+        <aside class="doc-aside">
+          <span>Принцип</span>
+          <p>Не собирать сразу дорогой финальный бокс, пока не проверены ESP32, датчики и сервер.</p>
+        </aside>
+
+        <div class="doc-body">
+          <article>
+            <h2>Корзина A: MVP</h2>
+            <p>Минимальный набор, чтобы быстро собрать прототип.</p>
+            <ul>
+              <li>ESP32 DevKitC / ESP32-WROOM-32 dev board.</li>
+              <li>2-4 емкостных датчика влажности почвы v1.2.</li>
+              <li>USB data cable, USB-блок питания 5V 2A.</li>
+              <li>Dupont-провода, breadboard, маленький корпус для ESP32.</li>
+              <li>Клеммники, термоусадка, стяжки.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h2>Корзина B: точность и сборка</h2>
+            <ul>
+              <li>SHT31-D I2C для температуры и влажности воздуха.</li>
+              <li>DS18B20 waterproof для почвы или бака.</li>
+              <li>BH1750 как контроль включения света.</li>
+              <li>JST/PH2.0-разъемы, мультиметр, перфорированная плата.</li>
+              <li>Горшок, поддон, грунт, перлит или вермикулит.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h2>Корзина C: гроубокс</h2>
+            <p>
+              Для томатов лучше не брать слишком низкий бокс. Если есть место,
+              высота около 150 см удобнее, чем 100-120 см.
+            </p>
+            <ul>
+              <li>Гроутент или шкаф.</li>
+              <li>LED grow light full spectrum 150-240W.</li>
+              <li>Подвес для светильника и таймер-розетка.</li>
+              <li>Вентилятор на клипсе, канальный вентилятор, угольный фильтр.</li>
+              <li>Воздуховод, хомуты, отражающая пленка или майлар.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h2>Корзина D: автополив</h2>
+            <p>
+              Автополив не стоит включать в первый день. Сначала нужна история
+              влажности и понимание поведения конкретной почвы.
+            </p>
+            <ul>
+              <li>Бак для воды с крышкой.</li>
+              <li>Перистальтическая помпа 12V или мини-помпа.</li>
+              <li>MOSFET-модуль, блок питания, силиконовые трубки.</li>
+              <li>Капельницы, тройники, датчик уровня воды.</li>
+              <li>Датчик протечки обязателен перед автономным поливом.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h2>Что не покупать на MVP</h2>
+            <ul>
+              <li>Резистивные датчики влажности с открытыми металлическими дорожками.</li>
+              <li>Реле для 220V и открытые силовые сборки.</li>
+              <li>Помпы и бак автополива до накопления данных.</li>
+              <li>Дорогой LED-свет, пока не проверен базовый сбор данных.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h2>Контроль перед покупкой</h2>
+            <ul>
+              <li>ESP32 прошивается без отдельного программатора.</li>
+              <li>Датчики совместимы с 3.3V логикой ESP32.</li>
+              <li>LED-свет имеет понятное реальное потребление.</li>
+              <li>Вентилятор, фильтр и воздуховод одного диаметра.</li>
+              <li>Силовая часть 220V не собирается на открытой макетной плате.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer section-shell">
+      <span>Growbox Journal</span>
+      <a href="index.html">Вернуться на главную</a>
+    </footer>
+  </body>
+</html>

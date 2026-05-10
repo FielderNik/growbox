@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Growbox Journal</title>
+    <meta
+      name="description"
+      content="Журнал прогресса домашнего гроубокса: ESP32, датчики влажности, сервер на Ktor и будущая автоматизация."
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Основная навигация">
+        <a class="logo" href="#top" aria-label="Growbox Journal">
+          <span>GB</span>
+          <span>Growbox Journal</span>
+        </a>
+        <div class="nav-links">
+          <a href="#status">Статус</a>
+          <a href="#log">Журнал</a>
+          <a href="#docs">Документы</a>
+          <a href="#photos">Фото</a>
+          <a href="#next">Дальше</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="kicker">Домашняя умная теплица / томаты / ESP32</p>
+          <h1 id="hero-title">Проект растет от первого датчика к своему гроубоксу.</h1>
+          <p class="lead">
+            Небольшой инженерный дневник: что уже решено, что собирается сейчас
+            и какие узлы появятся дальше — сервер, история измерений, климат,
+            уведомления и безопасный автополив.
+          </p>
+        </div>
+
+        <div class="hero-visual" aria-label="Схема проекта">
+          <div class="orbit orbit-a"></div>
+          <div class="orbit orbit-b"></div>
+          <div class="diagram-node node-sensor">
+            <span>01</span>
+            <strong>Датчики</strong>
+          </div>
+          <div class="diagram-node node-device">
+            <span>02</span>
+            <strong>ESP32</strong>
+          </div>
+          <div class="diagram-node node-api">
+            <span>03</span>
+            <strong>Ktor API</strong>
+          </div>
+          <div class="diagram-node node-data">
+            <span>04</span>
+            <strong>История</strong>
+          </div>
+        </div>
+      </section>
+
+      <section id="status" class="status-band">
+        <div class="metric">
+          <span>Текущий этап</span>
+          <strong>MVP</strong>
+          <p>ESP32 + емкостные датчики влажности почвы.</p>
+        </div>
+        <div class="metric">
+          <span>Фокус</span>
+          <strong>Стабильность</strong>
+          <p>Измерения, усреднение, retry и диагностика.</p>
+        </div>
+        <div class="metric">
+          <span>Следующий узел</span>
+          <strong>Ktor</strong>
+          <p>Прием телеметрии и хранение истории.</p>
+        </div>
+      </section>
+
+      <section class="section-shell system-section" aria-labelledby="system-title">
+        <div class="section-label">Система</div>
+        <div class="split-heading">
+          <h2 id="system-title">Сначала наблюдаем.<br>Потом автоматизируем.</h2>
+          <p>
+            Автополив, свет и вентиляция появятся только после накопления
+            измерений и понимания порогов для конкретной почвы. Такой порядок
+            снижает риск аварий и лишних переделок.
+          </p>
+        </div>
+
+        <div class="pipeline" aria-label="Поток данных">
+          <article>
+            <span>Sensor</span>
+            <strong>Влажность</strong>
+            <p>1-2 емкостных датчика v1.2 в почве.</p>
+          </article>
+          <article>
+            <span>Device</span>
+            <strong>ESP32</strong>
+            <p>Сбор, усреднение и отправка JSON.</p>
+          </article>
+          <article>
+            <span>API</span>
+            <strong>Ktor</strong>
+            <p>Device token, telemetry endpoint, healthcheck.</p>
+          </article>
+          <article>
+            <span>Data</span>
+            <strong>PostgreSQL</strong>
+            <p>Устройства, сенсоры, измерения, калибровка.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="log" class="section-shell log-section" aria-labelledby="log-title">
+        <div class="section-label">Прогресс</div>
+        <div class="split-heading">
+          <h2 id="log-title">Короткий журнал проекта</h2>
+          <p>
+            Страница задумана как спокойный фотоотчет: без лишней витрины,
+            с понятным состоянием работ и следующими действиями.
+          </p>
+        </div>
+
+        <div class="log-grid">
+          <article class="log-entry completed">
+            <span class="entry-number">01</span>
+            <p class="entry-date">Май 2026</p>
+            <h3>План и архитектура</h3>
+            <p>
+              Описаны этапы, MVP, схема БД, API, закупки и ограничения по
+              безопасности.
+            </p>
+          </article>
+
+          <article class="log-entry current">
+            <span class="entry-number">02</span>
+            <p class="entry-date">Сейчас</p>
+            <h3>Первый мониторинг</h3>
+            <p>
+              Подготовка устройства, которое читает влажность почвы и переживает
+              временные сбои Wi-Fi или сервера.
+            </p>
+          </article>
+
+          <article class="log-entry">
+            <span class="entry-number">03</span>
+            <p class="entry-date">Дальше</p>
+            <h3>Сервер и история</h3>
+            <p>
+              Минимальный backend на Ktor: телеметрия, последние значения,
+              история и калибровка датчиков.
+            </p>
+          </article>
+
+          <article class="log-entry">
+            <span class="entry-number">04</span>
+            <p class="entry-date">Позже</p>
+            <h3>Климат и автополив</h3>
+            <p>
+              Свет, вентиляция, уведомления и полив добавляются после проверки
+              реальных данных.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="docs" class="section-shell docs-section" aria-labelledby="docs-title">
+        <div class="section-label">База проекта</div>
+        <div class="split-heading">
+          <h2 id="docs-title">План и список закупок вынесены отдельно.</h2>
+          <p>
+            На главной остается короткий прогресс, а подробности по архитектуре,
+            этапам, API, прошивке и оборудованию доступны как отдельные страницы.
+          </p>
+        </div>
+
+        <div class="docs-grid">
+          <a class="doc-card" href="plan.html">
+            <span class="doc-number">01</span>
+            <p class="entry-date">Smart greenhouse plan</p>
+            <h3>План реализации</h3>
+            <p>
+              Этапы развития от ESP32 и влажности почвы до Ktor-сервера,
+              уведомлений, автополива, света и вентиляции.
+            </p>
+            <strong>Открыть план</strong>
+          </a>
+
+          <a class="doc-card" href="equipment.html">
+            <span class="doc-number">02</span>
+            <p class="entry-date">Equipment shopping list</p>
+            <h3>Список оборудования</h3>
+            <p>
+              Практичные корзины закупки: MVP, датчики климата, гроубокс,
+              автополив и безопасное управление силовой частью.
+            </p>
+            <strong>Открыть список</strong>
+          </a>
+        </div>
+      </section>
+
+      <section id="photos" class="photo-section" aria-labelledby="photos-title">
+        <div class="section-shell">
+          <div class="section-label">Фото</div>
+          <div class="split-heading">
+            <h2 id="photos-title">Место для реальных снимков</h2>
+            <p>
+              Когда появятся фотографии платы, датчиков и сборки, эти блоки
+              можно заменить обычными изображениями из `site/assets/photos`.
+            </p>
+          </div>
+        </div>
+
+        <div class="photo-strip" aria-label="Фотографии проекта">
+          <figure class="photo-frame tall">
+            <div class="placeholder-visual">
+              <span>ESP32</span>
+            </div>
+            <figcaption>
+              <strong>Контроллер</strong>
+              <span>Плата, питание, провода и корпус.</span>
+            </figcaption>
+          </figure>
+
+          <figure class="photo-frame">
+            <div class="placeholder-visual sensor">
+              <span>Soil 01</span>
+            </div>
+            <figcaption>
+              <strong>Датчики</strong>
+              <span>Емкостные датчики влажности почвы.</span>
+            </figcaption>
+          </figure>
+
+          <figure class="photo-frame wide">
+            <div class="placeholder-visual prototype">
+              <span>Prototype</span>
+            </div>
+            <figcaption>
+              <strong>Сборка</strong>
+              <span>Макет, первые измерения и калибровка.</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="next" class="section-shell next-section" aria-labelledby="next-title">
+        <div class="section-label">Next</div>
+        <div class="next-layout">
+          <h2 id="next-title">Ближайший практический шаг</h2>
+          <ol class="task-list">
+            <li>
+              <span>01</span>
+              <p>Создать минимальный Ktor backend.</p>
+            </li>
+            <li>
+              <span>02</span>
+              <p>Добавить <code>POST /api/v1/telemetry</code>.</p>
+            </li>
+            <li>
+              <span>03</span>
+              <p>Завести <code>devices</code>, <code>sensors</code>, <code>measurements</code>.</p>
+            </li>
+            <li>
+              <span>04</span>
+              <p>Подготовить локальный запуск и базовые тесты.</p>
+            </li>
+            <li>
+              <span>05</span>
+              <p>Отдельно написать MVP-прошивку ESP32.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer section-shell">
+      <span>Growbox Journal</span>
+      <span>Мониторинг сначала. Автоматизация после данных.</span>
+    </footer>
+  </body>
+</html>

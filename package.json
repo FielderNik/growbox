@@ -4,7 +4,7 @@
   "private": true,
   "description": "Статическая страница прогресса проекта домашнего гроубокса.",
   "scripts": {
-    "serve": "python3 -m http.server 8000 -d site",
+    "serve": "python3 -m http.server 8000 -d docs",
     "test:ui": "playwright test",
     "test:ui:update": "playwright test --update-snapshots"
   },

@@ -1,3 +1,45 @@
 node_modules/
 playwright-report/
 test-results/
+
+# IDE / editor local state
+.idea/
+.vscode/
+
+# Local secrets and machine-specific config
+.env
+.env.*
+!.env.example
+*.local
+*.local.*
+application-local.*
+application-*.local.*
+secrets.*
+credentials.*
+wifi_config.*
+device_config.*
+
+# ESP32 / firmware local credentials
+firmware/**/secrets.h
+firmware/**/credentials.h
+firmware/**/wifi_config.h
+firmware/**/device_config.h
+firmware/**/secrets.cpp
+firmware/**/credentials.cpp
+
+# Local databases and generated runtime files
+*.db
+*.sqlite
+*.sqlite3
+*.h2.db
+*.mv.db
+*.trace.db
+logs/
+*.log
+
+# Build outputs
+build/
+out/
+.gradle/
+dist/
+coverage/
